@@ -1,0 +1,167 @@
+{
+  "name": "albus",
+  "displayName": "Albus",
+  "description": "Llama based AI code completion",
+  "version": "0.0.1",
+  "icon": "https://raw.githubusercontent.com/abybaddi009/albus/077ef0bac33e853f7c408f06f25cd1beb4a955c2/assets/albus_small.png",
+  "keywords": [
+    "code-inference",
+    "code-suggestion",
+    "copilot",
+    "localhost",
+    "no-leaks",
+    "private",
+    "albus",
+    "llama.cpp",
+    "llama"
+  ],
+  "repository": {
+    "url": "https://github.com/abybaddi009/albus"
+  },
+  "license": "GPL-3.0-only",
+  "publisher": "abybaddi009",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "bugs": {
+    "url": "https://github.com/abybaddi009/albus/issues"
+  },
+  "categories": [
+    "Machine Learning",
+    "Snippets",
+    "Other",
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "author": {
+    "name": "abybaddi009"
+  },
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "albus.enable",
+        "shortTitle": "Enable albus",
+        "title": "Enable albus"
+      },
+      {
+        "command": "albus.disable",
+        "title": "Disable albus",
+        "shortTitle": "Disable albus"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "General",
+        "id": "albusGeneral",
+        "order": 1,
+        "properties": {
+          "albus.general.contextLength": {
+            "type": "number",
+            "default": 500,
+            "description": "Number of characters to include in the context (default: 500 characters)"
+          },
+          "albus.general.debounceWait": {
+            "type": "number",
+            "default": 500,
+            "description": "Amount of time to wait before sending a request to the server (default: 500ms)"
+          },
+          "albus.general.enabled": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      {
+        "title": "llama.cpp",
+        "id": "albus.llama.cpp",
+        "properties": {
+          "albus.llama.cpp.host": {
+            "type": "string",
+            "default": "localhost",
+            "description": "Host of the LLama model server"
+          },
+          "albus.llama.cpp.port": {
+            "type": "number",
+            "default": 8000,
+            "description": "Port of the LLama model server"
+          },
+          "albus.llama.cpp.stream": {
+            "type": "boolean",
+            "default": true,
+            "description": "Streaming (enabled by default)"
+          },
+          "albus.llama.cpp.temperature": {
+            "type": "number",
+            "default": 0.7,
+            "description": "The randomness of the generated text (default: 0.7)"
+          },
+          "albus.llama.cpp.max_tokens": {
+            "type": "number",
+            "default": 20,
+            "description": "The number of tokens to predict when generating text (default: 20)"
+          },
+          "albus.llama.cpp.repeat_penalty": {
+            "type": "number",
+            "default": 1.1,
+            "description": "The penalty for repeating tokens (default: 1.1)"
+          },
+          "albus.llama.cpp.seed": {
+            "type": "number",
+            "default": -1,
+            "description": "Seed for the random number generator (default: -1)"
+          },
+          "albus.llama.cpp.top_p": {
+            "type": "number",
+            "default": 0.9,
+            "description": "Limit the next token selection to a subset of tokens with a cumulative probability above a threshold P (default: 0.9)"
+          },
+          "albus.llama.cpp.top_k": {
+            "type": "number",
+            "default": 40,
+            "description": "Limit the next token selection to the K most probable tokens (default: 40)"
+          },
+          "albus.llama.cpp.stop_strings": {
+            "title": "Stop Strings",
+            "description": "List of strings for stopping the output of the LLama model",
+            "type": "array",
+            "default": ["### "]
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "vscode:package": "npm exec vsce package",
+    "vscode:publish": "npm exec vsce publish"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.70.0",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "@vscode/test-electron": "^2.1.5",
+    "@vscode/vsce": "^2.18.0",
+    "eslint": "^8.20.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "stylelint-config-standard-scss": "^11.0.0",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
