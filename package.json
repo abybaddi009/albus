@@ -3,7 +3,7 @@
   "displayName": "Albus",
   "description": "Llama based AI code completion",
   "version": "0.0.1",
-  "icon": "https://raw.githubusercontent.com/abybaddi009/albus/077ef0bac33e853f7c408f06f25cd1beb4a955c2/assets/albus_small.png",
+  "icon": "assets/albus_small.png",
   "keywords": [
     "code-inference",
     "code-suggestion",

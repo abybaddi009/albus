@@ -8,7 +8,7 @@ Albus is aptly named as your "wizard" programmer, since he is not casting spells
 
 Our goal? To democratize the development of AI tools and make it as enchanting for everybody.
 
- Accio, llamas! 🧙‍♀️✨
+Accio, llamas! 🧙‍♀️✨
 
 ## 🚀 Getting Started
 
@@ -18,40 +18,43 @@ To make use of Albus properly, you will need to run the [🦙 llama.cpp Python A
 
 ### Installation & Setup
 
-1. Create a folder on your local for your server and models
+#### Create a folder for your models
 
 ```bash
-mkdir service
-cd service
 mkdir models
 ```
+#### Download a suitable model from [🤗 Hugging Face](https://huggingface.co/) into this folder's model folder
 
-2. Create and activate virtual environment
+Some good models in no particular order:
+
+- https://huggingface.co/TheBloke/deepseek-coder-6.7B-instruct-GGUF
+- https://huggingface.co/TheBloke/WizardCoder-Python-7B-V1.0-GGUF 
+- https://huggingface.co/TheBloke/WizardCoder-Python-13B-V1.0-GGUF
+- https://huggingface.co/TheBloke/XwinCoder-13B-GGUF/
+- https://huggingface.co/TheBloke/XwinCoder-34B-GGUF/
+- https://huggingface.co/TheBloke/Phind-CodeLlama-34B-v2-GGUF
+
+
+#### Create and activate virtual environment (optional)
+If you want to keep the server separate then create a virtual environment
 
 ```bash
 python3 -m venv .env
 ```
-3. Install API server with [🦙 llama.cpp Python](https://github.com/abetlen/llama-cpp-python)
+
+#### Install API server with [🦙 llama.cpp Python](https://github.com/abetlen/llama-cpp-python)
 
 ```bash
-(.env) pip3 install "llama-cpp-python[server]"
+pip3 install "llama-cpp-python[server]"
 ```
 
-4. Download a suitable model from [🤗 Hugging Face](https://huggingface.co/) into this folder's model folder
-
-Some good models:
-
-https://huggingface.co/TheBloke/deepseek-coder-6.7B-instruct-GGUF
-
-https://huggingface.co/TheBloke/WizardCoder-Python-7B-V1.0-GGUF 
-
-5. Run the server using
+#### Run the server using
 
 ```bash
 python3 -m llama_cpp.server --model models/deepseek-coder-6.7b-instruct.Q5_K_M.gguf --n_ctx 8192
 ```
 
-6. Install the verified extension using vscode or visit [this link](https://marketplace.visualstudio.com/items?itemName=abybaddi009.albus) for more information on how to install it.
+#### Install the verified extension using vscode or visit [this link](https://marketplace.visualstudio.com/items?itemName=abybaddi009.albus) for more information on how to install it.
 
 Enjoy enhanced code completions with **Albus**! 🎉
 
@@ -92,7 +95,7 @@ Enjoy enhanced code completions with **Albus**! 🎉
 
 - Selecting and refactoring code
 
-- Code selection and utomatic documentation
+- Code selection and automatic documentation
 
 - Optimization of selected code
 

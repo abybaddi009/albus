@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Capture and Playback</title>
+</head>
+<body>
+    <h1>Voice Capture and Playback</h1>
+
+    <button onclick="startRecording()" id="startButton">Speak</button>
+    <button onclick="stopRecording()" id="stopButton" disabled>Stop Recording</button>
+    <button onclick="playCapturedAudio()" id="playButton" disabled>Play Captured Audio</button>
+
+    <script>
+        let mediaRecorder;
+        let recordedChunks = [];
+
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+                mediaRecorder = new MediaRecorder(stream);
+
+                mediaRecorder.ondataavailable = event => {
+                    if (event.data.size > 0) {
+                        recordedChunks.push(event.data);
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(recordedChunks, { type: 'audio/wav' });
+                    const audioUrl = URL.createObjectURL(blob);
+                    document.getElementById('playButton').disabled = false;
+                    document.getElementById('playButton').dataset.audioUrl = audioUrl;
+                };
+
+                mediaRecorder.start();
+                document.getElementById('startButton').disabled = true;
+                document.getElementById('startButton').textContent = 'Recording...';
+                document.getElementById('stopButton').disabled = false;
+            } catch (error) {
+                console.error('Error accessing microphone:', error);
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+                document.getElementById('startButton').disabled = false;
+                document.getElementById('startButton').textContent = 'Speak';
+                document.getElementById('stopButton').disabled = true;
+            }
+        }
+
+        function playCapturedAudio() {
+            const audioUrl = document.getElementById('playButton').dataset.audioUrl;
+            if (audioUrl) {
+                const audio = new Audio(audioUrl);
+                audio.play();
+            }
+        }
+    </script>
+</body>
+</html>
