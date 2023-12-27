@@ -88,6 +88,11 @@
             "default": 8000,
             "description": "Port of the LLama model server"
           },
+          "albus.llama.cpp.model": {
+            "type": "string",
+            "default": "copilot-codex",
+            "description": "Llama model name"
+          },
           "albus.llama.cpp.stream": {
             "type": "boolean",
             "default": true,
@@ -127,7 +132,9 @@
             "title": "Stop Strings",
             "description": "List of strings for stopping the output of the LLama model",
             "type": "array",
-            "default": ["### "]
+            "default": [
+              "### "
+            ]
           }
         }
       }

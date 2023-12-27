@@ -24,6 +24,7 @@ export class CompletionProvider implements InlineCompletionItemProvider {
   private _contextLength = this._config.get("contextLength") as number;
   private _host = this._llamaconfig.get("host") as string;
   private _port = this._llamaconfig.get("port") as number;
+  private _model = this._llamaconfig.get("model") as string;
   private _temp = this._llamaconfig.get("temperature") as number;
   private _repeat_penalty = this._llamaconfig.get("repeat_penalty") as number;
   private _seed = this._llamaconfig.get("seed") as number;
@@ -83,6 +84,7 @@ export class CompletionProvider implements InlineCompletionItemProvider {
           stop: this._stop_strings,
           stream: this._stream,
           max_tokens: this._max_tokens,
+          model: this._model,
         };
 
         try {
